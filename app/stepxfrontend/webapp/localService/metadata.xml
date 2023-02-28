@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Validation.V1.xml">
+        <edmx:Include Alias="Validation" Namespace="Org.OData.Validation.V1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="TestService" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Projects" EntityType="TestService.Projects">
+                    <NavigationPropertyBinding Path="user" Target="Users"/>
+                </EntitySet>
+                <EntitySet Name="WorkHours" EntityType="TestService.WorkHours">
+                    <NavigationPropertyBinding Path="user" Target="Users"/>
+                    <NavigationPropertyBinding Path="project" Target="Projects"/>
+                </EntitySet>
+                <EntitySet Name="Users" EntityType="TestService.Users">
+                    <NavigationPropertyBinding Path="workhour" Target="WorkHours"/>
+                    <NavigationPropertyBinding Path="workschedule" Target="WorkSchedules"/>
+                </EntitySet>
+                <EntitySet Name="WorkSchedules" EntityType="TestService.WorkSchedules">
+                    <NavigationPropertyBinding Path="user" Target="Users"/>
+                    <NavigationPropertyBinding Path="dayschedules" Target="DayBindings"/>
+                </EntitySet>
+                <EntitySet Name="DaySchedules" EntityType="TestService.DaySchedules"/>
+                <EntitySet Name="DayBindings" EntityType="TestService.DayBindings">
+                    <NavigationPropertyBinding Path="workSchedule" Target="WorkSchedules"/>
+                    <NavigationPropertyBinding Path="daySchedule" Target="DaySchedules"/>
+                </EntitySet>
+            </EntityContainer>
+            <EntityType Name="Projects">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="projectname" Type="Edm.String" Nullable="false"/>
+                <Property Name="startdate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="enddate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="maximumhours" Type="Edm.Decimal" Nullable="false" Scale="variable"/>
+                <Property Name="currenthours" Type="Edm.Decimal" Scale="variable"/>
+                <NavigationProperty Name="user" Type="Collection(TestService.Users)"/>
+                <Property Name="user_ID" Type="Edm.Guid"/>
+            </EntityType>
+            <EntityType Name="WorkHours">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="user" Type="TestService.Users" Nullable="false">
+                    <ReferentialConstraint Property="user_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="user_ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="project" Type="TestService.Projects" Nullable="false">
+                    <ReferentialConstraint Property="project_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="project_ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="starttime" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="endtime" Type="Edm.DateTimeOffset" Nullable="false"/>
+                <Property Name="absence" Type="Edm.Boolean" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Users">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="username" Type="Edm.String" Nullable="false"/>
+                <Property Name="firstname" Type="Edm.String" Nullable="false"/>
+                <Property Name="lastname" Type="Edm.String" Nullable="false"/>
+                <Property Name="profilepicture" Type="Edm.Binary"/>
+                <Property Name="title" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="workhour" Type="Collection(TestService.WorkHours)"/>
+                <Property Name="workhour_ID" Type="Edm.Guid"/>
+                <NavigationProperty Name="workschedule" Type="Collection(TestService.WorkSchedules)"/>
+                <Property Name="workschedule_ID" Type="Edm.Guid"/>
+                <Property Name="admin" Type="Edm.Boolean" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="WorkSchedules">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="startdate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="enddate" Type="Edm.Date" Nullable="false"/>
+                <Property Name="starttime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="endtime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <NavigationProperty Name="user" Type="TestService.Users" Nullable="false">
+                    <ReferentialConstraint Property="user_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="user_ID" Type="Edm.Guid" Nullable="false"/>
+                <NavigationProperty Name="dayschedules" Type="Collection(TestService.DayBindings)"/>
+            </EntityType>
+            <EntityType Name="DaySchedules">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="fromtime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="totime" Type="Edm.TimeOfDay" Nullable="false"/>
+                <Property Name="weekday" Type="Edm.Int32" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="DayBindings">
+                <Key>
+                    <PropertyRef Name="workScheduleID"/>
+                    <PropertyRef Name="dayScheduleID"/>
+                </Key>
+                <Property Name="workScheduleID" Type="Edm.String" Nullable="false"/>
+                <Property Name="dayScheduleID" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="workSchedule" Type="TestService.WorkSchedules">
+                    <ReferentialConstraint Property="workScheduleID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <NavigationProperty Name="daySchedule" Type="TestService.DaySchedules">
+                    <ReferentialConstraint Property="dayScheduleID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+            </EntityType>
+            <Annotations Target="TestService.Projects/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="TestService.Projects/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="TestService.Projects/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="TestService.Projects/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="TestService.WorkHours/createdAt">
+                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                        <Annotation Term="Core.Immutable" Bool="true"/>
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                        <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                        </Annotations>
+                                        <Annotations Target="TestService.WorkHours/createdBy">
+                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                            <Annotation Term="Core.Immutable" Bool="true"/>
+                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                            <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                </Annotations>
+                                                <Annotations Target="TestService.WorkHours/modifiedAt">
+                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                    <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="TestService.WorkHours/modifiedBy">
+                                                        <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                                        <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                            <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="TestService.DaySchedules/createdAt">
+                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="TestService.DaySchedules/createdBy">
+                                                                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                    <Annotation Term="Core.Immutable" Bool="true"/>
+                                                                    <Annotation Term="Core.Computed" Bool="true"/>
+                                                                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="TestService.DaySchedules/modifiedAt">
+                                                                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                            <Annotation Term="Core.Computed" Bool="true"/>
+                                                                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="TestService.DaySchedules/modifiedBy">
+                                                                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                                                                <Annotation Term="Core.Computed" Bool="true"/>
+                                                                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                                                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                                                                    </Annotations>
+                                                                                    <Annotations Target="TestService.DaySchedules/weekday">
+                                                                                        <Annotation Term="Validation.AllowedValues">
+                                                                                            <Collection>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Sunday"/>
+                                                                                                    <PropertyValue Property="Value" Int="0"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Monday"/>
+                                                                                                    <PropertyValue Property="Value" Int="1"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Tuesday"/>
+                                                                                                    <PropertyValue Property="Value" Int="2"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Wednesday"/>
+                                                                                                    <PropertyValue Property="Value" Int="3"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Thursday"/>
+                                                                                                    <PropertyValue Property="Value" Int="4"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Friday"/>
+                                                                                                    <PropertyValue Property="Value" Int="5"/>
+                                                                                                </Record>
+                                                                                                <Record Type="Validation.AllowedValue">
+                                                                                                    <Annotation Term="Core.SymbolicName" String="Saturday"/>
+                                                                                                    <PropertyValue Property="Value" Int="6"/>
+                                                                                                </Record>
+                                                                                            </Collection>
+                                                                                        </Annotation>
+                                                                                    </Annotations>
+                                                                                </Schema>
+                                                                            </edmx:DataServices>
+                                                                        </edmx:Edmx>
