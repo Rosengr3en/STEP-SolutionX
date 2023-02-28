@@ -28,6 +28,11 @@ server:
         port: 1091
         xsappJson: webapp/xs-app.json
         destinations: []
+    - name: ui5-middleware-simpleproxy
+      afterMiddleware: compression
+      mountPath: /odata
+      configuration:
+        baseUri: "http://localhost:4004/odata"
 builder:
   customTasks:
     -  name: ui5-task-zipper

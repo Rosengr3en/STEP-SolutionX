@@ -13,6 +13,18 @@
     "sourceTemplate": {
       "id": "@sap-ux/fiori-freestyle-writer:basic",
       "version": "0.14.9"
+    },
+    "dataSources": {
+      "mainService": {
+          "uri": "/odata/",
+          "type": "OData",
+          "settings": {
+              "annotations": [
+                  "localAnnotations_1"
+              ],
+              "localUri": "localService/metadata.xml"
+            }
+        }
     }
   },
   "sap.ui": {
@@ -49,6 +61,17 @@
         "type": "sap.ui.model.resource.ResourceModel",
         "settings": {
           "bundleName": "com.gavdilabs.StepX.i18n.i18n"
+        }
+      },
+      "": {
+        "dataSource": "mainService",
+        "preload": true,
+        "type": "sap.ui.model.odata.v4.ODataModel",
+        "settings": {
+          "synchronizationMode": "None",
+          "operationMode": "Server",
+          "autoExpandSelect": true,
+          "earlyRequest": true
         }
       }
     },
