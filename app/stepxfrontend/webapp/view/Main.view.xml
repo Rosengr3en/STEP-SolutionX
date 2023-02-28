@@ -1,7 +1,41 @@
 <mvc:View controllerName="stepxfrontend.controller.Main"
     xmlns:mvc="sap.ui.core.mvc" displayBlock="true"
     xmlns="sap.m">
-    <Page id="page" title="{i18n>title}">
+    <Shell id="shell">
+        <App id="app">
+            <pages>
+                <Page id="page" title="{i18n>title}">
+                    <content>
+                        <form:SimpleForm
+                            id="sfsapui5"
+                            editable="true"
+                            layout="ResponsiveLayout"
+                            labelSpanL="4"
+                            emptySpanL="4"
+                            columnsL="1"
+                            adjustableLabelSpan="false"
+                            title="Login Page(DD)">
+                        <form:content>
+                            <Label text="Username"></Label>
+                            <Input placeholder="enter user name"></Input>
+                            <Label text="Password"></Label>
+                            <Input placeholder="enter password"></Input>    
+                        </form:content>
+                        </form:SimpleForm>
+                    </content>
+                    <footer>
+                        <Bar design="Footer">
+                            <contentRight>
+                                <Button text="login" press="onLoginPress">
+                                </Button>
+                            </contentRight>
+                        </Bar>
+                    </footer>
+                </Page>
+            </pages>
+        </App>
+    </Shell>
+    <!--><Page id="page" title="{i18n>title}">
         <content />
-    </Page>
+    </Page><-->
 </mvc:View>

@@ -6,8 +6,6 @@ sap.ui.define(
       "use strict";
   
       return BaseController.extend("stepxfrontend.controller.App", {
-        onInit() {
-        }
       });
     }
   );
