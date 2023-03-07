@@ -1,0 +1,30 @@
+<mvc:View
+	controllerName="com.gavdilabs.StepX.controller.Registration"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<Page showHeader="false">
+	<!--This is for the header content-->
+		<headerContent>
+		</headerContent>
+
+		<!--This is for the body of the page-->
+		<content>
+        <VBox justifyContent = "Center" alignItems = "Center" class = "sapUiSmallMargin">
+            <Title text = "{Welcome} {firstname} {lastname}! {selectproject}"/>
+            <HBox justifyContent = "Center" alignItems = "Center" width = "100vm">
+                <List id = "projectList" width = "50vm" items = "{
+                    path: 'projects',
+                    parameters: {
+                        $expand: 'projects'
+                    }
+                }">
+                    <StandardListItem title = "{project/projectName}" type = "Navigation" press = ".onListItemPress"/>
+                </List>
+            </HBox>  
+        </VBox>
+		</content>
+	</Page>
+
+</mvc:View>

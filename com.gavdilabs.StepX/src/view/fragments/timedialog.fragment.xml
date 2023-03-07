@@ -1,0 +1,30 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="timedialog" title="Register Hours">
+        <VBox class="sapUiSmallMargin">
+            <HBox alignItems="Center">
+                <Label text="{project}" class="sapUiSmallMarginEnd" width="150px" />
+                <Text text="{projectName}" />
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="{startdate}" class="sapUiSmallMarginEnd" width="150px" />
+                <Text text="{startdate}" />
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="{enddate}" class="sapUiSmallMarginEnd" width="150px" />
+                <Text text="{enddate}" />
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="{startdatetime}" class="sapUiSmallMarginEnd" width="150px" />
+                <DateTimePicker id = "DTPStart" />
+            </HBox>
+            <HBox alignItems="Center">
+                <Label text="{enddatetime}" class="sapUiSmallMarginEnd" width="150px" />
+                <DateTimePicker id = "DTPEnd" />
+            </HBox>
+        </VBox>
+        <buttons>
+            <Button text="{Submit}" type="Accept" press=".onPressSubmit" />
+            <Button text="{Cancel}" type="Reject" press=".onPressCancel" />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

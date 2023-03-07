@@ -1,0 +1,36 @@
+<mvc:View
+	controllerName="com.gavdilabs.StepX.controller.Main"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:mvc="sap.ui.core.mvc">
+
+	<Page showHeader="false">
+	<!--This is for the header content-->
+		<headerContent>
+			<Text text = "This is the header"/>
+		</headerContent>
+		<!--This is for the body of the page-->
+		<content>
+			<!--The FlexBox is a customizable container which is used to place elements-->
+			<!--Height and width propertiers take inputs in the form of css style size type strings-->
+			<!--This includes %, px, rem, vh etc.-->
+
+			<!--justifyContent determines how the FlexBox justifies(vertical placement) the content.-->
+			<!--alignItems determines how the content is aligened(horizontal placement)-->
+			<FlexBox height = "100%" width = "100%" direction="Column" justifyContent="Center" alignItems="Center">
+				<!--The VBox and HBox elements are types of FlexBox with the direction predefined, with v for vertical and h for horizontal.
+				The class property of the element adds css style classes to the element. To add multiple, seperate class names by spaces-->
+				<VBox height = "30vh" width = "30vw" justifyContent="Center" alignItems="Center" class = "loginBox">
+					<!--Title is a databinding to i18n-->
+					<Title text = "loginHeader"/>
+					<HBox height = "2rem" width = "15rem" alignItems="Center">
+						<Label text = "Username: " class = "sapUISmallMarginEnd"/>
+						<Input id = "usernameInput" placeholder="Input Username" liveChange=".onUsernameInputChange"/>
+					</HBox>
+					<Button id = "loginButton" text = "Login" type = "Emphasized" press = ".onLoginPress"/>
+				</VBox>
+			</FlexBox>
+		</content>
+	</Page>
+
+</mvc:View>

@@ -1,24 +1,15 @@
 {
-  "generator-template-ui5-project": {
-    "projectname": "StepX",
-    "namespaceUI5": "com.gavdilabs",
-    "enableFPM": false,
-    "platform": "SAP HTML5 Application Repository service for SAP BTP",
-    "viewtype": "XML",
-    "ui5libs": "Content delivery network (SAPUI5)",
-    "newdir": true,
-    "codeassist": true,
+  "generator-ui5-ts-app": {
+    "application": "StepX",
+    "namespace": "com.gavdilabs",
+    "framework": "SAPUI5",
+    "frameworkVersion": "1.108.10",
+    "author": "Mads3132",
     "initrepo": false,
-    "namespaceURI": "com/gavdilabs",
-    "opa5pos": [
-      "Main"
-    ],
-    "opa5Journeys": [
-      "Main"
-    ],
-    "uimodules": [
-      "uimodule"
-    ],
+    "tstypes": "@sapui5/ts-types-esm",
+    "tstypesVersion": "1.108.10",
+    "appId": "com.gavdilabs.StepX",
+    "appURI": "com/gavdilabs/StepX",
     "setupCompleted": true
   }
 }
