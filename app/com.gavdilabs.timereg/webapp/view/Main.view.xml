@@ -1,0 +1,39 @@
+<mvc:View
+	controllerName="com.gavdilabs.timereg.controller.Main"
+	displayBlock="true"
+	xmlns="sap.m"
+	xmlns:f="sap.ui.layout.form"
+	xmlns:mvc="sap.ui.core.mvc">
+	<!--First we create the page, using "page" to create the body of the page-->
+	<Page
+		title="Time registration">
+			<!--Here we are using flexbox to customize the different containers we later create using VBox and HBox.
+			We use Height and Width to take input from CSS in our customization.
+			Additionally we use justifyContent to determine how the FlexBox justifies the vertical placement of the content,
+			afterwards we use alignItems to determine where the content is aligned(horizontal placement)-->
+			<FlexBox height="100%" width="100%" direction="Column" justifyContent="Center" alignItems="Center">
+			<!--Now we use VBox to create vertical content om the page, in this case the title of the page named "Login". 
+			The height and width of the VBox is determined to fill 30% of the window -->
+				<VBox height="30vh" width="30vw" justifyContent="Center" alignItems="Center" >
+					<Title text="Login"/>
+					<!--Here we use HBox to create the username and password input elements 
+					We determine the password element as type "password" to hide the input the user is inserting-->
+					<HBox height="2rem" width="15rem" alignItems="Center">
+						<Label text="{i18n>Username}" class="sapUISmallMargin"/>
+						<Input id="usernameInput" placeholder="Insert Username" liveChange=".onUsernameInputChange" />
+					</HBox>
+					<HBox height="2rem" width="15rem" alignItems="Center">
+						<Label text="{i18n>Password}" class="sapUISmallMargin"/>
+						<Input id="passwordInput" placeholder="Insert Password" type="Password" liveChange=".onUsernameInputChange"/>
+					</HBox>
+					<HBox justifyContent="Center" alignItems="Center" width="100%">
+						<Button text="Login" press="onPress"/>
+					</HBox>
+				</VBox>
+			</FlexBox>
+		<!--Creates Login button with onPress function.
+		The onPress function is called in main.Controller-->
+		
+	</Page>
+
+</mvc:View>

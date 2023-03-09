@@ -1,8 +1,0 @@
-{
-  "welcomeFile": "comgavdilabsStepX/",
-  "authenticationMethod": "none",
-  "logout": {
-    "logoutEndpoint": "/do/logout"
-  },
-  "routes": []
-}
