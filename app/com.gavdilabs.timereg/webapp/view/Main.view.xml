@@ -33,7 +33,5 @@
 			</FlexBox>
 		<!--Creates Login button with onPress function.
 		The onPress function is called in main.Controller-->
-		
 	</Page>
-
 </mvc:View>
