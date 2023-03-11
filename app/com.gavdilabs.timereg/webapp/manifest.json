@@ -74,9 +74,9 @@
 					"target": "main"
 				},
 				{
-					"pattern": "overview",
-					"name": "overview",
-					"target": "overview"
+					"pattern": "userOverview",
+					"name": "userOverview",
+					"target": "userOverview"
 				}
 			],
 			"targets": {
@@ -84,9 +84,9 @@
 					"viewId": "main",
 					"viewName": "Main"
 				}, 
-				"overview": {
-					"viewId": "overview",
-					"viewName": "Overview"
+				"userOverview": {
+					"viewId": "userOverview",
+					"viewName": "UserOverview"
 				}
 			}
 		}

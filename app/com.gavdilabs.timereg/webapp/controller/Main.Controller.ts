@@ -12,28 +12,24 @@ import Component from "../Component";
 
 export default class Main extends BaseController {
 	private formatter = formatter;
-	private router: Router;
+	//private router: Router;
 	private component: Component;
 	private _tmpUserName: String = "";
-	private _tmpPassword: String = "";
+	//private _tmpPassword: String = "";
 	private oModel: ODataModel;
-
-	/*public onPress(ev: Event) {
-		this.router.navTo("overview")
-	}*/
 
 	public onInit() {
 		this.component = this.getOwnerComponent();
 		this.oModel = this.getModel() as ODataModel;
 	}
 
-	async onPress(ev: Event) {
+	async onLoginPress(ev: Event) {
 		let object;
 		const model = this.getModel() as ODataModel;
 
 		//Validate that the user exists with an try/catch, if not catch an error message
-		try {
-			object = await model.bindContext(`/Users('${this._tmpUserName}')`).requestObject();
+		/*try {
+			object = await model.bindContext(`/User(${this._tmpUserName})`).requestObject();
 		} catch (err: any) {
 			if (err.message == "Not Found") alert("Error: User not found");
 			else alert(err.message);
@@ -42,9 +38,9 @@ export default class Main extends BaseController {
 
 		await this.component.getControlModel().setProperty("/Username", this._tmpUserName);
 		await this.component.getControlModel().setProperty("/FirstName", object.FirstName);
-		await this.component.getControlModel().setProperty("/LastName", object.LastName);
+		await this.component.getControlModel().setProperty("/LastName", object.LastName);*/
 
-		this.component.getRouter().navTo("overview");
+		this.component.getRouter().navTo("userOverview");
 	}
 
 		//Validate that the password exists with an try/catch, if not catch an error message

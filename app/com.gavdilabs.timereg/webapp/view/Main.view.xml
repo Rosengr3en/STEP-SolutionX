@@ -26,12 +26,12 @@
 						<Label text="{i18n>Password}" class="sapUISmallMargin"/>
 						<Input id="passwordInput" placeholder="Insert Password" type="Password" liveChange=".onUsernameInputChange"/>
 					</HBox>
+					<!--Creates Login button with onPress function.
+					The onPress function is called in main.Controller-->
 					<HBox justifyContent="Center" alignItems="Center" width="100%">
-						<Button text="Login" press="onPress"/>
+						<Button text="Login" press="onLoginPress"/>
 					</HBox>
 				</VBox>
 			</FlexBox>
-		<!--Creates Login button with onPress function.
-		The onPress function is called in main.Controller-->
 	</Page>
 </mvc:View>
