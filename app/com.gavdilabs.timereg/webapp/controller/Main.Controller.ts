@@ -40,7 +40,7 @@ export default class Main extends BaseController {
 		await this.component.getControlModel().setProperty("/FirstName", object.FirstName);
 		await this.component.getControlModel().setProperty("/LastName", object.LastName);*/
 
-		this.component.getRouter().navTo("userOverview");
+		this.component.getRouter().navTo("userOverview"); 
 	}
 
 		//Validate that the password exists with an try/catch, if not catch an error message

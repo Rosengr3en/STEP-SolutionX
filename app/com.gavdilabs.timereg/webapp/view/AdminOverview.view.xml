@@ -1,18 +1,17 @@
 <mvc:View
 	height="100%"
-	controllerName="com.gavdilabs.timereg.controller.UserOverview"
+	controllerName="com.gavdilabs.timereg.controller.AdminOverview"
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:core="sap.ui.core"
 	xmlns="sap.m">
 
-	<core:InvisibleText id="text1" text="Label text"/>
 
 	<Page
 		showHeader="true"
 		enableScrolling="true"
 		class="sapUiContentPadding"
 		showNavButton="false" 
-		title="Time registration">
+        title="Time Registration (Admin)">
 
 		<content>
 			<Table
@@ -24,28 +23,43 @@
 						<SearchField ariaLabelledBy="text1" id="maxPrice" liveChange="onFilter">
 							<layoutData><OverflowToolbarLayoutData maxWidth="300px" shrinkable="true" priority="NeverOverflow"/></layoutData>
 						</SearchField>
-							<Button text="Work Schedule" type="Transparent" press="onWorkSchedule"/>
+						<Button text="Create work schedule" type="Transparent" press="onCreateWorkSchedule"/>
 						<OverflowToolbarButton tooltip="Sort" type="Transparent" text="Sort" icon="sap-icon://sort" press="onSort"/>
 						<OverflowToolbarButton tooltip="Group" type="Transparent" text="Group" icon="sap-icon://group-2" press="onGroup"/>
 					</OverflowToolbar>
 				</headerToolbar>
 				<columns>
 					<Column width="12em"><Text text="Projects" /></Column>
-					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Remaining Hours" /></Column>
+                    <Column minScreenWidth="Tablet" demandPopin="true"><Text text="Remaining hours" /></Column>
+					<Column minScreenWidth="Tablet" demandPopin="true"><Text text="Registered hours" /></Column>
 					<Column minScreenWidth="Tablet" demandPopin="true" hAlign="End"><Text text="Start Date" /></Column>
 					<Column hAlign="End"><Text text="End Date" /></Column>
 				</columns>
-				<items>
+				<List>
 					<ColumnListItem>
 						<cells>
-							<ObjectIdentifier title="{ProjectName}" text="{Projects}" />
-							<Text text="{RemainingHours}" />
-							<Text text="{StartDate}" />
-							<Text text="{EndDate}" />
+							<ObjectIdentifier title="{Name}" text="{ProjectId}" />
+							<Text text="{SupplierName}" />
+							<Text text="{Width} x {Depth} x {Height} {DimUnit}" />
+							<ObjectNumber
+									number="{
+										parts:[{path:'Price'},{path:'CurrencyCode'}],
+										type: 'sap.ui.model.type.Currency',
+										formatOptions: {showMeasure: false}
+									}"
+									unit="{CurrencyCode}" />
 						</cells>
 					</ColumnListItem>
-				</items>
+				</List>
 			</Table>
 		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer/>
+				<OverflowToolbarButton tooltip="Delete" text="Delete" icon="sap-icon://delete"/>
+				<OverflowToolbarButton tooltip="Edit" text="Edit" icon="sap-icon://edit"/>
+				<OverflowToolbarButton tooltip="Add" text="Add" icon="sap-icon://add"/>
+			</OverflowToolbar>
+		</footer>
 	</Page>
 </mvc:View>

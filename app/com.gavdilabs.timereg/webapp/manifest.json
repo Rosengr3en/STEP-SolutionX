@@ -77,6 +77,11 @@
 					"pattern": "userOverview",
 					"name": "userOverview",
 					"target": "userOverview"
+				},
+				{
+					"pattern": "adminOverview",
+					"name": "adminOverview",
+					"target": "adminOverview"
 				}
 			],
 			"targets": {
@@ -87,6 +92,10 @@
 				"userOverview": {
 					"viewId": "userOverview",
 					"viewName": "UserOverview"
+				},
+				"adminOverview": {
+					"viewId": "adminOverview",
+					"viewName": "AdminOverview"
 				}
 			}
 		}
