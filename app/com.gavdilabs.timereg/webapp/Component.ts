@@ -3,6 +3,7 @@ import { support } from "sap/ui/Device";
 import JSONModel from "sap/ui/model/json/JSONModel";
 import models from "./model/models";
 
+
 /**
  * @namespace com.gavdilabs.timereg
  */
@@ -13,8 +14,8 @@ export default class Component extends UIComponent {
 	};
 
 	private contentDensityClass : string;
-	//controlModel: JSONModel;
-	//private controlModel : JSONModel;
+	private controlModel: JSONModel;
+	
 
 	public init() : void {
 		// call the base component's init function
@@ -52,15 +53,15 @@ export default class Component extends UIComponent {
 //The function is used to tell TypeScript that we want to return a JSON model.
 //This function holds data, in this case username. 
 //If the model does not exist, create a new one. Otherwise use exisiting model. 
-	//public getControlModel(): JSONModel {
-		//if (!this.getModel("Control")) {
-		//	const schema = {
-		//		Username: "",
-		//};
-		//this.controlModel = new JSONModel(schema);
-	//	this.controlModel.setDefaultBindingMode("TwoWay");
-	//	this.setModel(this.controlModel, "Control");
-//	}
-//	return this.getModel("Control") as JSONModel;
-
-} 
+	public getControlModel(): JSONModel {
+		if (!this.getModel("Control")) {
+			const schema = {
+				Username: "",
+			};
+			this.controlModel = new JSONModel(schema);
+			this.controlModel.setDefaultBindingMode("TwoWay");
+			this.setModel(this.controlModel, "Control");
+		}
+		return this.getModel("Control") as JSONModel;
+	}
+}
