@@ -47,5 +47,13 @@
 				</items>
 			</Table>
 		</content>
+		<footer>
+			<OverflowToolbar id="otbFooter">
+				<ToolbarSpacer/>
+				<Button type="Accept" text="Register hours for chosen project" press= "onRegisterHours">
+					<layoutData><OverflowToolbarLayoutData priority="NeverOverflow" /></layoutData>
+				</Button>
+			</OverflowToolbar>
+		</footer>
 	</Page>
 </mvc:View>

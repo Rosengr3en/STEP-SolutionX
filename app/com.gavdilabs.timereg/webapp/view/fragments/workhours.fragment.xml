@@ -1,0 +1,6 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+    <Dialog id="workhours" title="Register work hours">
+        <VBox class="sapUiSmallMargin">
+        </VBox>
+    </Dialog>
+</core:FragmentDefinition>
