@@ -9,7 +9,17 @@
 		"description": "{{appDescription}}",
 		"applicationVersion": {
 			"version": "1.0.0"
-		}
+		},
+		"dataSources": {
+			 "mainService": {
+				"uri": "/test/",
+				"type": "OData",
+				"settings": { 
+					"localUri": "localService/metadata.xml",
+					"odataVersion": "4.0"
+					}
+				}
+			}
 	},
 
 	"sap.ui": {
@@ -54,6 +64,16 @@
 				"type": "sap.ui.model.resource.ResourceModel",
 				"settings": {
 					"bundleName": "com.gavdilabs.timereg.i18n.i18n"
+				}
+			},
+			"": {
+				"dataSource": "mainService",
+				"preload": true,
+				"settings": {
+					"synchronizationMode": "None",
+					"operationMode": "Server",
+					"autoExpandSelect": true,
+					"earlyRequests": true
 				}
 			}
 		},

@@ -28,8 +28,8 @@ export default class Main extends BaseController {
 		const model = this.getModel() as ODataModel;
 
 		//Validate that the user exists with an try/catch, if not catch an error message
-		/*try {
-			object = await model.bindContext(`/User(${this._tmpUserName})`).requestObject();
+		try {
+			object = await model.bindContext(`/Users(${this._tmpUserName})`).requestObject();
 		} catch (err: any) {
 			if (err.message == "Not Found") alert("Error: User not found");
 			else alert(err.message);
@@ -38,30 +38,15 @@ export default class Main extends BaseController {
 
 		await this.component.getControlModel().setProperty("/Username", this._tmpUserName);
 		await this.component.getControlModel().setProperty("/FirstName", object.FirstName);
-		await this.component.getControlModel().setProperty("/LastName", object.LastName);*/
+		await this.component.getControlModel().setProperty("/LastName", object.LastName);
 
 		this.component.getRouter().navTo("userOverview"); 
 	}
-
-		//Validate that the password exists with an try/catch, if not catch an error message
-		//Note to self, vi burde nok tjekke om password hører til user og ikke om det eksisterer. 
-		/*try {
-			object = await model.bindContext(`/Password('${this._tmpPassword}')`).requestObject();
-		} catch (err: any) {
-			if (err.message == "Not Found") alert("Error: Password not found");
-			else alert(err.message);
-			return;
-		}*/
-
-	
 
 	public onUsernameInputChange(ev: Event) {
 		this._tmpUserName = ev.getParameter("value");
 
 	}
-	/*public onPasswordInputChange(ev: Event) {
-		this._tmpPassword = ev.getParameter("value");
 
-	}*/
 	
 }
